@@ -16,11 +16,8 @@ import {
   alignmentGroupLayer,
   lotLayer,
   treeCuttingLayer,
-  treeCompensationLayer,
-  commemorativeTreeLayer,
 } from "../layers";
 import "@esri/calcite-components/dist/components/calcite-button";
-import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
 
 function MapDisplay() {
   const [mapView, setSceneView] = useState();
@@ -32,6 +29,7 @@ function MapDisplay() {
       arcgisMap.map.add(alignmentGroupLayer);
       arcgisMap.map.add(lotLayer);
       arcgisMap.map.add(treeGroupLayer);
+      arcgisMap.view.ui.components = [];
 
       arcgisSearch.sources = [
         {
@@ -62,14 +60,14 @@ function MapDisplay() {
         setSceneView(event.target);
       }}
     >
-      <arcgis-compass position="top-right"></arcgis-compass>
-      <arcgis-expand close-on-esc position="top-right" mode="floating">
+      <arcgis-compass slot="top-right"></arcgis-compass>
+      <arcgis-expand close-on-esc slot="top-right" mode="floating">
         <arcgis-search></arcgis-search>
         {/* <arcgis-placement>
           <calcite-button>Placeholder</calcite-button>
         </arcgis-placement> */}
       </arcgis-expand>
-      <arcgis-zoom position="bottom-right"></arcgis-zoom>
+      <arcgis-zoom slot="bottom-right"></arcgis-zoom>
     </arcgis-map>
   );
 }
